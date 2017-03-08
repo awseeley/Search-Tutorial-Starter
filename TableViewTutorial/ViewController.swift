@@ -8,8 +8,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet var tableView: UITableView!
     
-    var tableData: [String] = ["Red Velvet", "Brownie", "Bannna Bread", "Vanilla", "Minty"]
-    var tableDataDetail: [String] = ["Small", "Medium", "Large", "Small", "Medium"]
+    struct Cake {
+        var name = String()
+        var size = String()
+    }
+    
+    var cakes = [Cake(name: "Red Velvet", size: "Small"),
+                 Cake(name: "Brownie", size: "Medium"),
+                 Cake(name: "Bannna Bread", size: "Large"),
+                 Cake(name: "Vanilla", size: "Small"),
+                 Cake(name: "Minty", size: "Medium")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,14 +26,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tableData.count
+        return self.cakes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 	{
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = self.tableData[indexPath.row]
-        cell.detailTextLabel?.text = self.tableDataDetail[indexPath.row]
+        cell.textLabel?.text = self.cakes[indexPath.row].name
+        cell.detailTextLabel?.text = self.cakes[indexPath.row].size
         
         return cell
     }
